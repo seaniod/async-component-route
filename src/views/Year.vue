@@ -25,7 +25,7 @@
           await new Promise(r => setTimeout(r, 1000));
           return import('@/components/' + thisRoute.params.year + '/' + thisRoute.name + '.vue');
         },
-        loadingComponent: Skeleton
+        loadingComponent: Skeleton 
       }),
     }
   };

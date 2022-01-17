@@ -1,6 +1,6 @@
 # fix_eslint
 
-There was a set of problems getting Vue3 working with ESlint, especially the AirBnB specification. The package.json and .eslintrc files shows the dependencies that solve these problems. 
+The goal is to demo how to add .vue components dynamically, based on URL changes and which .vue files are available. This is based on Vue3 and uses ESlint/AirBnB.
 
 ## Project setup
 ```
