@@ -6,6 +6,9 @@
 <script>
 import { defineComponent, defineAsyncComponent } from "vue";
 
+// solution based on:
+// https://stackoverflow.com/questions/68485237/
+// https://codesandbox.io/s/dynamically-import-vue-component-based-on-url-params-3bzkn
 export default defineComponent({
   name: "BaseObject",
   data() {
