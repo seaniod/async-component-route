@@ -1,13 +1,5 @@
 <template>
-  <h1>Year page for {{ $route.params.year }}</h1>
-  <div id="secondary-nav">
-    <router-link :to="'/' + $route.params.year + '/About'">About</router-link> |
-    <router-link :to="'/' + $route.params.year + '/People'">People</router-link> |
-    <router-link :to="'/' + $route.params.year + '/Program'">Program</router-link>
-  </div>
-  <h2>Secondary nav selection: {{ $route.name }}</h2>
   <component :is="secondaryContent"  />
-  <!--v-if="$route.name !== 'Year'"-->
 </template>
 
 <script>
@@ -15,7 +7,7 @@
   import { defineComponent, defineAsyncComponent } from 'vue';
   import Skeleton from '@/components/skeleton.vue';
   export default defineComponent({
-    name: "Year1",
+    name: "Year",
     data() {
       return { componentPath: '@/components/2021/About.vue' };
     },
@@ -26,7 +18,7 @@
       }
     },
     created() {
-      this.componentPath = '@/components/' + this.$route.params.year + '/' + this.$route.name + '.vue';
+      this.componentPath = '@/components' + this.$route.path + '.vue';
       console.log('created:' + this.componentPath);
     }
   });

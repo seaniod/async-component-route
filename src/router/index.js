@@ -1,32 +1,51 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory
+} from 'vue-router';
 import Home from '../views/Home.vue';
 import Year from '../views/Year.vue';
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Home',
     component: Home
   },
   {
-    path: '/:year(20\\d\\d)',
-    name: 'About',
-    component: Year,
-    children: [
-      {path: 'About', name: 'About', component: Year},
-      {path: 'People', name: 'People', component: Year},
-      {path: 'Program', name: 'Program', component: Year}
-    ]
+    path: '/2021/About',
+    name: 'About1',
+    component: Year
   },
   {
-    path: '/:pathMatch(.*)*', // https://stackoverflow.com/questions/50961082
-    redirect: '/',
+    path: '/2021/People',
+    name: 'People1',
+    component: Year
   },
+  {
+    path: '/2021/Program',
+    name: 'Program1',
+    component: Year
+  },
+  {
+    path: '/2022/About',
+    name: 'About2',
+    component: Year
+  },
+  {
+    path: '/2022/People',
+    name: 'People2',
+    component: Year
+  },
+  {
+    path: '/2022/Program',
+    name: 'Program2',
+    component: Year
+  }
 ];
 
 const router = createRouter({
-  history: createWebHistory("/"),
-  routes
+  history: createWebHistory('/'),
+  routes: routes,
+  linkActiveClass: 'active'
 });
 
 
