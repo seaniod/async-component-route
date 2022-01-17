@@ -1,3 +1,7 @@
 <template>
-  <div>Skeleton</div>
+  <div>Loading...</div>
 </template>
+
+<style scoped>
+
+</style>

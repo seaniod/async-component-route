@@ -1,32 +1,33 @@
 <template>
-    <h1>Year page for {{ $route.params.year }}</h1>
-    <div id="secondary-nav">
-      <router-link :to="'/' + $route.params.year + '/About'">About</router-link> |
-      <router-link :to="'/' + $route.params.year + '/People'">People</router-link> |
-      <router-link :to="'/' + $route.params.year + '/Program'">Program</router-link>
-    </div>
-    <h2>Secondary nav selection: {{ $route.name }}</h2>
-    <secondary-content v-if="$route.name !== 'Year'" />
+  <h1>Year page for {{ $route.params.year }}</h1>
+  <div id="secondary-nav">
+    <router-link :to="'/' + $route.params.year + '/About'">About</router-link> |
+    <router-link :to="'/' + $route.params.year + '/People'">People</router-link> |
+    <router-link :to="'/' + $route.params.year + '/Program'">Program</router-link>
+  </div>
+  <h2>Secondary nav selection: {{ $route.name }}</h2>
+  <component :is="secondaryContent"  />
+  <!--v-if="$route.name !== 'Year'"-->
 </template>
 
 <script>
-  import { defineAsyncComponent } from 'vue';
+  // https://stackoverflow.com/questions/68485237/dynamically-import-vue-component-based-on-url-params
+  import { defineComponent, defineAsyncComponent } from 'vue';
   import Skeleton from '@/components/skeleton.vue';
-
-  let thisRoute;
-  export default {
-    created: function () {
-        //self = this;
-        thisRoute = this.$route;
+  export default defineComponent({
+    name: "Year1",
+    data() {
+      return { componentPath: '@/components/2021/About.vue' };
     },
-    components: {
-      secondaryContent: defineAsyncComponent({
-        loader: async () => {
-          await new Promise(r => setTimeout(r, 1000));
-          return import('@/components/' + thisRoute.params.year + '/' + thisRoute.name + '.vue');
-        },
-        loadingComponent: Skeleton 
-      }),
+    computed: {
+      secondaryContent() {
+        console.log('computed:' + this.componentPath);
+        return defineAsyncComponent(() => require(`${this.componentPath}`));
+      }
+    },
+    created() {
+      this.componentPath = '@/components/' + this.$route.params.year + '/' + this.$route.name + '.vue';
+      console.log('created:' + this.componentPath);
     }
-  };
+  });
 </script>
