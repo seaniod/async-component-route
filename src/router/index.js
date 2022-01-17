@@ -1,29 +1,20 @@
-import {
-  createRouter,
-  createWebHistory
-} from 'vue-router';
-import Home from '../views/Home.vue';
-import Year from '../views/Year.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../views/Home.vue";
+import BaseObject from "../views/BaseObject.vue";
 
-const routes = [{
-    path: '/',
-    name: 'Home',
+const routes = [
+  {
+    path: "/",
+    name: "Home",
     component: Home
   },
-  {
-    path: '/:year(20\\d\\d)',
-    name: 'Year',
-    component: Year,
-    children: [
-      {path: ':page', component: Year}
-    ]
-  }
+  { path: "/object/about", name: "about", component: BaseObject },
+  { path: "/object/people", name: "people", component: BaseObject }
 ];
 
 const router = createRouter({
-  history: createWebHistory('/'),
-  routes: routes,
-  linkActiveClass: 'active'
+  history: createWebHistory("/"),
+  routes
 });
 
 export default router;

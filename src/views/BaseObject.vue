@@ -6,7 +6,6 @@
 <script>
 import { defineComponent, defineAsyncComponent } from "vue";
 
-// https://stackoverflow.com/questions/68485237/dynamically-import-vue-component-based-on-url-params
 export default defineComponent({
   name: "BaseObject",
   data() {
@@ -18,24 +17,15 @@ export default defineComponent({
   methods: {},
   computed: {
     componentFile() {
+      console.log(this.componentPath);
       return defineAsyncComponent(() =>
         import(`../components/${this.componentPath}.vue`)
       );
     },
   },
   created() {
-    // this.address = params.pop();
-    //this.componentPath = params.join("/");
-    this.componentPath = '@/components/' + this.$route.params.year + '/' + this.$route.name + '.vue';
+    this.componentPath = this.$route.name;
+    console.log(this.componentPath);
   },
-  watch: {
-    '$route': function(to, from) {
-      console.log(this.$route.params.year);
-      console.log(this.$route.name);
-      //this.componentPath = '@/components/' + this.$route.params.year + '/' + this.$route.name + '.vue';
-      //this.componentFile = () =>
-        //require(`../components/${this.componentPath}.vue`);
-    }
-  }
 });
 </script>
