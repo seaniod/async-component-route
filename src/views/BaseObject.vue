@@ -17,7 +17,6 @@ export default defineComponent({
       address: "",
     };
   },
-  methods: {},
   computed: {
     componentFile() {
       console.log(this.componentPath);
@@ -26,15 +25,15 @@ export default defineComponent({
       );
     },
   },
-  created() {
-    this.componentPath = this.$route.name;
-    console.log(this.componentPath);
-  },
   watch: {
     $route() {
       this.componentPath = this.$route.name;
       console.log(this.componentPath);
     }
+  },
+  created() {
+    this.componentPath = this.$route.name;
+    console.log(this.componentPath);
   }
 });
 </script>
