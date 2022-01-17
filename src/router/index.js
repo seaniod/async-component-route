@@ -11,34 +11,14 @@ const routes = [{
     component: Home
   },
   {
-    path: '/2021/About',
-    name: 'About1',
-    component: Year
-  },
-  {
-    path: '/2021/People',
-    name: 'People1',
-    component: Year
-  },
-  {
-    path: '/2021/Program',
-    name: 'Program1',
-    component: Year
-  },
-  {
-    path: '/2022/About',
-    name: 'About2',
-    component: Year
-  },
-  {
-    path: '/2022/People',
-    name: 'People2',
-    component: Year
-  },
-  {
-    path: '/2022/Program',
-    name: 'Program2',
-    component: Year
+    path: '/:year(20\\d\\d)',
+    name: 'Year',
+    component: Year,
+    children: [
+      {path: 'About', name: 'About', component: Year},
+      {path: 'People', name: 'People', component: Year},
+      {path: 'Platform', name: 'Platform', component: Year}
+    ]
   }
 ];
 
