@@ -5,18 +5,17 @@
       <router-link :to="'/' + $route.params.year + '/People'">People</router-link>
     </div>
     <h2>Secondary nav selection: {{ $route.name }}</h2>
-    <secondary-content2 v-if="$route.name !== 'Year'" />
-    <secondary-content v-if="$route.name === 'Something'" />
+    <secondary-content v-if="$route.name !== 'Year'" />
 </template>
 
 <script>
   import { defineAsyncComponent } from 'vue';
   import Skeleton from '@/components/skeleton.vue';
 
-  // ANSWER MAY BE:
-  // https://stackoverflow.com/questions/68485237/dynamically-import-vue-component-based-on-url-params
-  // https://github.com/vuejs/vue/issues/9788
+  // ANSWER MAY BE: https://github.com/vuejs/vue/issues/9788
+
   // BO SUGGESTS: TRY SWITCHING TO SYNNC/not-ASYNC component
+
   // https://stackoverflow.com/questions/49417410/how-to-save-reference-to-this-in-vue-component
   let thisRoute;
   export default {
@@ -25,12 +24,6 @@
         thisRoute = this.$route;
     },
     components: {
-      secondaryContent2: () => ({
-        component: import('@/components/2021/About.vue')
-        //return require('@/components/' + thisRoute.params.year + '/' + thisRoute.name + '.vue');
-        //return require('@/components' + window.location.pathname + '.vue');
-        //`url(${require(`@/assets/${this.selectedYear}/img/Hero/Background.jpg`)})`
-      }),
       secondaryContent: defineAsyncComponent({
         loader: async () => {
           await new Promise(r => setTimeout(r, 1000)); // artificial delay to demonstrate loading component
@@ -49,7 +42,7 @@
           //let path = '@/components/' + this.$route.params.year + '/' + this.$route.name + '.vue';
           //alert('path: ' + path);
           //return require('@/components' + window.location.pathname + '.vue');
-          //return require('@/components/' + thisRoute.params.year + '/' + thisRoute.name + '.vue');
+          return import('@/components/' + thisRoute.params.year + '/' + thisRoute.name + '.vue');
           //return require('@/components/' + thisRoute.params.year + '/' + thisRoute.name + '.vue');
           //return require('@/components/' + this.$route.params.year + '/' + this.$route.name + '.vue');
         },

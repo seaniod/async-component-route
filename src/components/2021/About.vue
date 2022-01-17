@@ -1,3 +1,3 @@
 <template>
-  <div>About content for 2021.</div>
+  <h1>This is an about component for 2021</h1>
 </template>
