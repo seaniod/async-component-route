@@ -15,9 +15,7 @@ const routes = [{
     name: 'Year',
     component: Year,
     children: [
-      {path: 'About', name: 'About', component: Year},
-      {path: 'People', name: 'People', component: Year},
-      {path: 'Platform', name: 'Platform', component: Year}
+      {path: ':page', component: Year}
     ]
   }
 ];

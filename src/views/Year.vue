@@ -18,6 +18,7 @@
       }
     },
     created() {
+      console.log('page:' + this.$route.params.page);
       this.componentPath = '@/components' + this.$route.path + '.vue';
       console.log('created:' + this.componentPath);
     }
